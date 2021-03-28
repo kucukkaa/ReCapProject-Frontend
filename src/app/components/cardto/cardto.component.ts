@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { CarDto } from 'src/app/models/carDto';
+import { CarImage } from 'src/app/models/carImage';
 import { CardtoService } from 'src/app/services/cardto.service';
+import { CarimageService } from 'src/app/services/carimage.service';
 
 @Component({
   selector: 'app-cardto',
@@ -13,8 +15,11 @@ export class CardtoComponent implements OnInit {
 
   carDtos:CarDto[] = [];
   dataLoaded = false;
+  filterText="";
+  currentCarDto:CarDto;
+  carImages:CarImage[]=[];
 
-  constructor(private carDtoService:CardtoService ,private activatedRoute:ActivatedRoute, private sanitizer : DomSanitizer) { }
+  constructor(private carDtoService:CardtoService ,private activatedRoute:ActivatedRoute, private toastrService:ToastrService, private carImageService:CarimageService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -46,6 +51,21 @@ export class CardtoComponent implements OnInit {
     this.carDtoService.getCarDtosByBrandId(brandId).subscribe(response=>{
       this.carDtos = response.data
       this.dataLoaded = true
+    })
+  }
+
+  addToCart(carDto:CarDto){
+    this.toastrService.success("SEPETE EKLENDİ", carDto.brandName)
+  }
+
+  setCurrentCar(carDto:CarDto){
+    this.currentCarDto = carDto; 
+  }
+
+  getCarImagesById(){
+    this.carImageService.getCarImagesById(this.currentCarDto.carId).subscribe(response=>{
+      this.carImages = response.data
+      this.dataLoaded = true;
     })
   }
 

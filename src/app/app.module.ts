@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from "@angular/common/http"
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
+import { BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +16,12 @@ import { UserComponent } from './components/user/user.component';
 import { NaviComponent } from './components/navi/navi.component';
 import { CardtoComponent } from './components/cardto/cardto.component';
 import { RentaldtoComponent } from './components/rentaldto/rentaldto.component';
+import { VatAddedPipe } from './pipes/vat-added.pipe';
+import { FilterPipePipe } from './pipes/filter-pipe.pipe';
+
+import { ToastrModule } from "ngx-toastr";
+import { CarcardComponent } from './components/carcard/carcard.component';
+
 
 
 @NgModule({
@@ -29,11 +37,19 @@ import { RentaldtoComponent } from './components/rentaldto/rentaldto.component';
     NaviComponent,
     CardtoComponent,
     RentaldtoComponent,
+    VatAddedPipe,
+    FilterPipePipe,
+    CarcardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass:"toast-bottom-right"
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,20 +1,32 @@
 <div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
     <span class="visually-hidden">Loading...</span>
 </div>
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Araç Ara</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Ara">
+</div>
+<div *ngIf= "filterText.length>2" class="alert alert-primary">
+    {{filterText}} aradınız
+</div>
+  
 <table class="table">
     <thead *ngIf="dataLoaded==true">
         <tr>
-            <th>No.</th>
             <th>Marka</th>
             <th>Renk</th>
-            <th>Günlük Fiyat</th>            
+            <th>Günlük Fiyat</th> 
+            <th>Kdv'li Fiyat</th> 
+            <th></th>          
         </tr>
     </thead>
-    <tr *ngFor="let carDto of carDtos">
-        <td>{{carDto.carId}}</td>
-        <td>{{carDto.brandName}}</td>
-        <td>{{carDto.colorName}}</td>
-        <td>{{carDto.dailyPrice}}</td>
-        <img src="{{carDto.imagePath}}"/>
-    </tr>
+    <tbody>
+        <tr (click) ="setCurrentCar(carDto)" *ngFor="let carDto of carDtos | filterPipe:filterText">
+            <td>{{carDto.brandName|uppercase}}</td>
+            <td>{{carDto.colorName}}</td>
+            <td>{{carDto.dailyPrice | currency}}</td>
+            <td>{{carDto.dailyPrice | vatAdded:10 | currency}}</td>
+            <td><button (click)="addToCart(carDto)" type="button" class="btn btn-success">Kirala</button></td>
+        </tr>
+    </tbody>
+    
 </table>
