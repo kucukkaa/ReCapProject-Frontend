@@ -21,6 +21,7 @@ import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 
 import { ToastrModule } from "ngx-toastr";
 import { CarcardComponent } from './components/carcard/carcard.component';
+import { TrustUrlPipe } from './pipes/trust-url.pipe';
 
 
 
@@ -39,7 +40,8 @@ import { CarcardComponent } from './components/carcard/carcard.component';
     RentaldtoComponent,
     VatAddedPipe,
     FilterPipePipe,
-    CarcardComponent
+    CarcardComponent,
+    TrustUrlPipe
   ],
   imports: [
     BrowserModule,

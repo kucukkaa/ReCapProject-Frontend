@@ -14,6 +14,7 @@ import { CarimageService } from 'src/app/services/carimage.service';
 export class CardtoComponent implements OnInit {
 
   carDtos:CarDto[] = [];
+  theCarDtos:CarDto;
   dataLoaded = false;
   filterText="";
   currentCarDto:CarDto;
@@ -25,10 +26,10 @@ export class CardtoComponent implements OnInit {
     this.activatedRoute.params.subscribe(params=>{
       if(params["brandId"]){
         this.getCarDtosByBrandId(params["brandId"])
-      }else if (params["colorId"]) {
+      }else if(params["colorId"]){
         this.getCarDtosByColorId(params["colorId"])
-      } else {
-        this.getCarDtos()  
+      }else {
+        this.getCarDtos();
       }
     })
   }
@@ -37,6 +38,7 @@ export class CardtoComponent implements OnInit {
     this.carDtoService.getCarDtos().subscribe(response=>{
       this.carDtos = response.data
       this.dataLoaded = true
+      console.log(this.carDtos[1].brandName)
     })
   }
 
@@ -59,13 +61,21 @@ export class CardtoComponent implements OnInit {
   }
 
   setCurrentCar(carDto:CarDto){
-    this.currentCarDto = carDto; 
+    this.currentCarDto = carDto;
+    console.log(this.currentCarDto.carId) 
   }
 
-  getCarImagesById(){
-    this.carImageService.getCarImagesById(this.currentCarDto.carId).subscribe(response=>{
+  getCarImagesById(carId:number){
+    this.carImageService.getCarImagesById(carId).subscribe(response=>{
       this.carImages = response.data
       this.dataLoaded = true;
+    })
+  }
+
+  getCarDtosByCarId(carId:number){
+    this.carDtoService.getCarDtosByCarId(carId).subscribe(response=>{
+      this.theCarDtos = response.data[0];
+      this.dataLoaded=true;
     })
   }
 

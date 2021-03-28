@@ -20,7 +20,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr (click) ="setCurrentCar(carDto)" *ngFor="let carDto of carDtos | filterPipe:filterText">
+        <tr (click) ="setCurrentCar(carDto)" routerLink="/cars/car/{{carDto.carId}}" *ngFor="let carDto of carDtos | filterPipe:filterText">
             <td>{{carDto.brandName|uppercase}}</td>
             <td>{{carDto.colorName}}</td>
             <td>{{carDto.dailyPrice | currency}}</td>
@@ -30,3 +30,4 @@
     </tbody>
     
 </table>
+
