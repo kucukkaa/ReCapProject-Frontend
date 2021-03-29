@@ -6,3 +6,11 @@
     <li (click)="setCurrentBrand(brand)" routerLink="/cars/brand/{{brand.brandId}}" *ngFor="let brand of brands" [class]="getCurrentBrandClass(brand)">{{brand.brandName}}</li>
 </ul>
 
+<label for="cars">Choose a car:</label>
+
+<select name="cars" id="cars">
+  <option value="volvo">Volvo</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
