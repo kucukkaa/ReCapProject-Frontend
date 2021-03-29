@@ -38,8 +38,9 @@ export class CarcardComponent implements OnInit {
   getCarImagesById(carId:number){
     this.carImageService.getCarImagesById(carId).subscribe(response=>{
       this.carImages = response.data
-      this.dataLoaded = true;
-        
+      if(this.carImages[0].imagePath != null){
+        this.dataLoaded = true;
+      }    
     })
   }
 

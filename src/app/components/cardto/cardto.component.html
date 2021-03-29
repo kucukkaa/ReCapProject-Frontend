@@ -25,7 +25,7 @@
             <td>{{carDto.colorName}}</td>
             <td>{{carDto.dailyPrice | currency}}</td>
             <td>{{carDto.dailyPrice | vatAdded:10 | currency}}</td>
-            <td><button (click)="addToCart(carDto)" type="button" class="btn btn-success">Kirala</button></td>
+            <td><button (click) ="setCurrentCar(carDto)" routerLink="/cars/car/{{carDto.carId}}" type="button" class="btn btn-success">Kirala</button></td>
         </tr>
     </tbody>
     
