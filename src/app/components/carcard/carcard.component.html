@@ -1,33 +1,67 @@
-<div *ngFor="let carImage of carImages" class="card" style="width: 28rem;">
-    <!-- <img *ngIf="dataLoaded==true" src="{{carImage.imagePath}}" class="card-img-top" alt="..."> -->
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="{{carImage.imagePath" class="card-img-top" alt="...">
+<div class="container">
+  <div class="content">
+    <div class="col-md-12">
+      <div *ngFor="let carImage of carImages" class="card">
+        <!-- <img *ngIf="dataLoaded==true" src="{{carImage.imagePath}}" class="card-img-top" alt="..."> -->
+
+        <div
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-bs-ride="carousel"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="{{ carImage.imagePath }}"
+                class="card-img-top"
+                alt="..."
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="{{ carImage.imagePath }}"
+                class="card-img-top"
+                alt="..."
+              />
+            </div>
+            <div class="carousel-item">
+              <img
+                src="{{ carImage.imagePath }}"
+                class="card-img-top"
+                alt="..."
+              />
+            </div>
           </div>
-          <div class="carousel-item">
-            <img src="{{carImage.imagePath" class="card-img-top" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="{{carImage.imagePath}}" class="card-img-top" alt="...">
-          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+        <div *ngFor="let carDto of carDtos" class="card-body">
+          <h5 class="card-title">{{ carDto.brandName }}</h5>
+          <p class="card-text">Renk: {{ carDto.colorName }}</p>
+          <p class="card-text">Günlük Ücret: {{ carDto.dailyPrice }}</p>
+        </div>
+
+        <br /><br />
+        <div class="d-grid gap-2 col-4 mx-auto">
+          <a class="btn btn-primary" role="button">Kirala</a>
+        </div>
       </div>
-    <div *ngFor="let carDto of carDtos" class="card-body">
-      <h5 class="card-title">{{carDto.brandName}}</h5>
-      <p class="card-text">Renk: {{carDto.colorName}}</p>
-      <p class="card-text">Günlük Ücret: {{carDto.dailyPrice}}</p>
-      
     </div>
-    
-    <br><br>
-    <button type="button" class="btn btn-success">Kirala</button>
+  </div>
 </div>
