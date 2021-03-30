@@ -24,4 +24,8 @@ export class CarAddComponent implements OnInit {
       dailyPrice:["", Validators.required],
     })
   }
+
+  add(){
+    let carModel = Object.assign(this.carAddForm.value)
+  }
 }
