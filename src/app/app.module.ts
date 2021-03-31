@@ -24,6 +24,7 @@ import { CarcardComponent } from './components/carcard/carcard.component';
 import { TrustUrlPipe } from './pipes/trust-url.pipe';
 import { FilterBycolorPipe } from './pipes/filter-bycolor.pipe';
 import { CarAddComponent } from './components/car-add/car-add.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -45,7 +46,8 @@ import { CarAddComponent } from './components/car-add/car-add.component';
     CarcardComponent,
     TrustUrlPipe,
     FilterBycolorPipe,
-    CarAddComponent
+    CarAddComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
