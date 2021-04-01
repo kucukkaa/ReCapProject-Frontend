@@ -6,6 +6,7 @@ import { CarcardComponent } from './components/carcard/carcard.component';
 import { CardtoComponent } from './components/cardto/cardto.component';
 import { CarimageComponent } from './components/carimage/carimage.component';
 import { LoginComponent } from './components/login/login.component';
+import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
   {path:"", pathMatch:"full", component:CardtoComponent},
@@ -14,7 +15,7 @@ const routes: Routes = [
   {path:"cars/brand/:brandId", component:CardtoComponent},
   {path:"cars/car/:carId", component:CarcardComponent},
   {path:"cars/carimages/:carId", component:CarimageComponent},
-  {path:"cars/add", component:CarAddComponent},
+  {path:"cars/add", component:CarAddComponent, canActivate:[LoginGuard]},
   {path:"login", component:LoginComponent}
 ];
 
