@@ -1,7 +1,7 @@
 <div class="container">
   <div class="content">
     <div class="col-md-12">
-      <div class="card">
+      <div class="card" style="width: 30rem;">
         <!-- <img *ngIf="dataLoaded==true" src="{{carImage.imagePath}}" class="card-img-top" alt="..."> -->
 
         <div
@@ -11,12 +11,12 @@
         >
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="https://stat.overdrive.in/wp-content/odgallery/2020/06/57263_2020_Mercedes_Benz_GLS.jpg" class="d-block w-100" alt="...">
+              <img src="https://www.shopsmartautos.com/wp-content/uploads/2020/09/default-car.jpg" class="rounded mx-auto d-block w-100" alt="...">
             </div>
             <div *ngFor="let carImage of carImages" class="carousel-item">
               <img
                 src="https://localhost:44355/{{ carImage.imagePath }}"
-                class="card-img-top"
+                class="rounded mx-auto d-block w-100"
                 alt="..."
               />
             </div>
@@ -44,7 +44,7 @@
         <div *ngFor="let carDto of carDtos" class="card-body">
           <h5 class="card-title">{{ carDto.brandName }}</h5>
           <p class="card-text">Renk: {{ carDto.colorName }}</p>
-          <p class="card-text">Günlük Ücret: {{ carDto.dailyPrice }}</p>
+          <p class="card-text">Günlük Ücret: {{ carDto.dailyPrice }} TL</p>
         </div>
         <div class="d-grid mx-auto">
           <div>

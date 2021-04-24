@@ -1,3 +1,4 @@
+import { identifierModuleUrl } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -19,6 +20,7 @@ export class CardtoComponent implements OnInit {
   filterText="";
   currentCarDto:CarDto;
   carImages:CarImage[]=[];
+  firstCarImage:CarImage;
 
   constructor(private carDtoService:CardtoService ,private activatedRoute:ActivatedRoute, private toastrService:ToastrService, private carImageService:CarimageService) { }
 
@@ -26,10 +28,13 @@ export class CardtoComponent implements OnInit {
     this.activatedRoute.params.subscribe(params=>{
       if(params["brandId"]){
         this.getCarDtosByBrandId(params["brandId"])
+        
       }else if(params["colorId"]){
         this.getCarDtosByColorId(params["colorId"])
+        
       }else {
         this.getCarDtos();
+        
       }
     })
   }
@@ -37,6 +42,11 @@ export class CardtoComponent implements OnInit {
   getCarDtos(){
     this.carDtoService.getCarDtos().subscribe(response=>{
       this.carDtos = response.data
+      for (let car = 0; car < this.carDtos.length; car++) {
+        this.carImageService.getCarImagesById(this.carDtos[car].carId).subscribe(response=>{
+          this.carImages.push(response.data[0])
+        })  
+      }
       this.dataLoaded = true
       console.log(this.carDtos[1].brandName)
     })
@@ -45,6 +55,12 @@ export class CardtoComponent implements OnInit {
   getCarDtosByColorId(colorId:number){
     this.carDtoService.getCarDtosByColorId(colorId).subscribe(response=>{
       this.carDtos = response.data
+      for (let car = 0; car < this.carDtos.length; car++) {
+        this.carImageService.getCarImagesById(this.carDtos[car].carId).subscribe(response=>{
+          this.carImages.push(response.data[0])         
+        }) 
+        
+      }
       this.dataLoaded = true
     })
   }
@@ -52,6 +68,12 @@ export class CardtoComponent implements OnInit {
   getCarDtosByBrandId(brandId:number){
     this.carDtoService.getCarDtosByBrandId(brandId).subscribe(response=>{
       this.carDtos = response.data
+      for (let car = 0; car < this.carDtos.length; car++) {
+        this.carImageService.getCarImagesById(this.carDtos[car].carId).subscribe(response=>{
+          this.carImages.push(response.data[0])         
+        }) 
+        
+      }
       this.dataLoaded = true
     })
   }

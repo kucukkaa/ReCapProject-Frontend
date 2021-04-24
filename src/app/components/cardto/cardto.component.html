@@ -1,33 +1,103 @@
-<div *ngIf="dataLoaded==false" class="spinner-border text-primary" role="status">
-    <span class="visually-hidden">Loading...</span>
+<div
+  *ngIf="dataLoaded == false"
+  class="spinner-border text-primary"
+  role="status"
+>
+  <span class="visually-hidden">Loading...</span>
 </div>
 <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">Araç Ara</label>
-    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Ara">
+  <label for="exampleFormControlInput1" class="form-label">Araç Ara</label>
+  <input
+    type="text"
+    [(ngModel)]="filterText"
+    class="form-control"
+    id="filterText"
+    placeholder="Ara"
+  />
 </div>
-<div *ngIf= "filterText.length>2" class="alert alert-primary">
-    {{filterText}} aradınız
+<div *ngIf="filterText.length > 2" class="alert alert-primary">
+  {{ filterText }} aradınız
 </div>
-  
+
 <table class="table">
-    <thead *ngIf="dataLoaded==true">
-        <tr>
-            <th>Marka</th>
-            <th>Renk</th>
-            <th>Günlük Fiyat</th> 
-            <th>Kdv'li Fiyat</th> 
-            <th></th>          
-        </tr>
-    </thead>
-    <tbody>
-        <tr (click) ="setCurrentCar(carDto)" routerLink="/cars/car/{{carDto.carId}}" *ngFor="let carDto of carDtos | filterPipe:filterText">
-            <td>{{carDto.brandName|uppercase}}</td>
-            <td>{{carDto.colorName}}</td>
-            <td>{{carDto.dailyPrice | currency}}</td>
-            <td>{{carDto.dailyPrice | vatAdded:10 | currency}}</td>
-            <td><button (click) ="setCurrentCar(carDto)" routerLink="/cars/car/{{carDto.carId}}" type="button" class="btn btn-success">Kirala</button></td>
-        </tr>
-    </tbody>
-    
+  <thead *ngIf="dataLoaded == true">
+    <tr>
+      <th>Marka</th>
+      <th>Renk</th>
+      <th>Günlük Fiyat</th>
+      <th>Kdv'li Fiyat</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      (click)="setCurrentCar(carDto)"
+      routerLink="/cars/car/{{ carDto.carId }}"
+      *ngFor="let carDto of carDtos | filterPipe: filterText"
+    >
+      <td>{{ carDto.brandName | uppercase }}</td>
+      <td>{{ carDto.colorName }}</td>
+      <td>{{ carDto.dailyPrice | currency }}</td>
+      <td>{{ carDto.dailyPrice | vatAdded: 10 | currency }}</td>
+      <td>
+        <button
+          (click)="setCurrentCar(carDto)"
+          routerLink="/cars/car/{{ carDto.carId }}"
+          type="button"
+          class="btn btn-success"
+        >
+          Kirala
+        </button>
+      </td>
+    </tr>
+  </tbody>
 </table>
 
+<div class="container">
+  <div class="content">
+    <div class="col-md-12">
+        <div class="row">
+        <div *ngFor="let carDto of carDtos | filterPipe: filterText" class="col-sm-4">
+    <div
+      
+      class="card"
+      
+    >
+    <div *ngFor="let carImage of carImages">
+      <img *ngIf="carDto.carId == carImage.carId; else elseBlock"
+        src="https://localhost:44355/{{ carImage.imagePath }}"
+        class="card-img-top"
+        alt="..."
+      />
+    </div>
+    <ng-template #elseBlock>
+        <div *ngFor="let carImage of carImages">
+            <img *ngIf="carDto.carId != carImage.carId"
+              src="https://localhost:44355//images/default.png"
+              class="card-img-top"
+              alt="..."
+            />
+          </div>
+    </ng-template>
+    
+      <div class="card-body">
+        <h5 class="card-title">{{ carDto.brandName | uppercase }}</h5>
+        <p class="card-text">{{ carDto.colorName }}</p>
+        <p class="card-text">
+          {{ carDto.dailyPrice | vatAdded: 10 | currency }}
+        </p>
+        <button
+          (click)="setCurrentCar(carDto)"
+          routerLink="/cars/car/{{ carDto.carId }}"
+          type="button"
+          class="btn btn-success"
+        >
+          Kirala
+        </button>
+      </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
