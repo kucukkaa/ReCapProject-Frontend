@@ -10,17 +10,9 @@
           data-bs-ride="carousel"
         >
           <div class="carousel-inner">
-            <div class="carousel-item active">
-              <img src="https://www.shopsmartautos.com/wp-content/uploads/2020/09/default-car.jpg" class="rounded mx-auto d-block w-100" alt="...">
-            </div>
-            <div *ngFor="let carImage of carImages" class="carousel-item">
-              <img
-                src="https://localhost:44355/{{ carImage.imagePath }}"
-                class="rounded mx-auto d-block w-100"
-                alt="..."
-              />
-            </div>
-            
+            <div *ngFor="let carImage of carImages;let i = index" class="carousel-item{{ i == 0? ' active' : null }}">
+              <img src="https://localhost:44355/{{ carImage.imagePath }}" class="rounded mx-auto d-block w-100" alt="...">
+            </div> 
           </div>
           <button
             class="carousel-control-prev"

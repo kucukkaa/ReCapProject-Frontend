@@ -3,5 +3,5 @@ export interface CarDto{
     brandName:string,
     colorName:string,
     dailyPrice:number,
-    imagePath?:string
+    imagePath:string
 }

@@ -20,6 +20,8 @@ export class CarcardComponent implements OnInit {
   carImages:CarImage[]=[]
   carImagePathTemp:string[]=[]
   abc:string[]
+  index:number = 0
+
 
 
 
@@ -48,9 +50,16 @@ export class CarcardComponent implements OnInit {
     this.carDtoService.getCarDtosByCarId(carId).subscribe(response=>{
       this.carDtos = response.data;
       this.dataLoaded=true;
-      console.log("geldi2")
     })
   }
+
+  // getSliderClassName(carImage: CarImage) {
+  //   if (this.currentImage === carImage) {
+  //     return "carousel-item active"
+  //   } else {
+  //     return "carousel-item"
+  //   }
+  // }
 
 
 

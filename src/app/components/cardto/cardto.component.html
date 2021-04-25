@@ -1,4 +1,4 @@
-<div
+<!-- <div
   *ngIf="dataLoaded == false"
   class="spinner-border text-primary"
   role="status"
@@ -51,7 +51,7 @@
       </td>
     </tr>
   </tbody>
-</table>
+</table> -->
 
 <div class="container">
   <div class="content">
@@ -63,22 +63,14 @@
       class="card"
       
     >
-    <div *ngFor="let carImage of carImages">
-      <img *ngIf="carDto.carId == carImage.carId; else elseBlock"
-        src="https://localhost:44355/{{ carImage.imagePath }}"
+    
+      <img 
+        src="https://localhost:44355/{{ carDto.imagePath }}"
         class="card-img-top"
         alt="..."
       />
-    </div>
-    <ng-template #elseBlock>
-        <div *ngFor="let carImage of carImages">
-            <img *ngIf="carDto.carId != carImage.carId"
-              src="https://localhost:44355//images/default.png"
-              class="card-img-top"
-              alt="..."
-            />
-          </div>
-    </ng-template>
+    
+    
     
       <div class="card-body">
         <h5 class="card-title">{{ carDto.brandName | uppercase }}</h5>

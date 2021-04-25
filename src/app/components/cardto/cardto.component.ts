@@ -42,25 +42,13 @@ export class CardtoComponent implements OnInit {
   getCarDtos(){
     this.carDtoService.getCarDtos().subscribe(response=>{
       this.carDtos = response.data
-      for (let car = 0; car < this.carDtos.length; car++) {
-        this.carImageService.getCarImagesById(this.carDtos[car].carId).subscribe(response=>{
-          this.carImages.push(response.data[0])
-        })  
-      }
       this.dataLoaded = true
-      console.log(this.carDtos[1].brandName)
     })
   }
 
   getCarDtosByColorId(colorId:number){
     this.carDtoService.getCarDtosByColorId(colorId).subscribe(response=>{
       this.carDtos = response.data
-      for (let car = 0; car < this.carDtos.length; car++) {
-        this.carImageService.getCarImagesById(this.carDtos[car].carId).subscribe(response=>{
-          this.carImages.push(response.data[0])         
-        }) 
-        
-      }
       this.dataLoaded = true
     })
   }
@@ -68,12 +56,6 @@ export class CardtoComponent implements OnInit {
   getCarDtosByBrandId(brandId:number){
     this.carDtoService.getCarDtosByBrandId(brandId).subscribe(response=>{
       this.carDtos = response.data
-      for (let car = 0; car < this.carDtos.length; car++) {
-        this.carImageService.getCarImagesById(this.carDtos[car].carId).subscribe(response=>{
-          this.carImages.push(response.data[0])         
-        }) 
-        
-      }
       this.dataLoaded = true
     })
   }
