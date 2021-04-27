@@ -10,7 +10,7 @@
           data-bs-ride="carousel"
         >
           <div class="carousel-inner">
-            <div *ngFor="let carImage of carImages;let i = index" class="carousel-item{{ i == 0? ' active' : null }}">
+            <div *ngFor="let carImage of carImages;let i = index" class="carousel-item {{ i == 0? 'active' : null }}">
               <img src="https://localhost:44355/{{ carImage.imagePath }}" class="rounded mx-auto d-block w-100" alt="...">
             </div> 
           </div>
@@ -37,19 +37,20 @@
           <h5 class="card-title">{{ carDto.brandName }}</h5>
           <p class="card-text">Renk: {{ carDto.colorName }}</p>
           <p class="card-text">Günlük Ücret: {{ carDto.dailyPrice }} TL</p>
+          
         </div>
         <div class="d-grid mx-auto">
           <div>
-            <p>Kiralama Tarihi:</p> <input type="date" name="rent_date">
+            <p>Kiralama Tarihi:</p> <input type="date" [(ngModel)]="rent_date" name ="rent_date">
           </div>
           <br>
           <div>
-            <p>İade Tarihi:</p> <input type="date" name="return_date">
+            <p>İade Tarihi:</p> <input type="date" [(ngModel)]="return_date" name="return_date">
           </div>
         </div>
         <br /><br />
         <div class="d-grid gap-2 col-4 mx-auto">
-          <a class="btn btn-primary" role="button">Kirala</a>
+          <a [class]="getRentButtonClassName()" role="button">Kirala</a>
         </div>
       </div>
     </div>

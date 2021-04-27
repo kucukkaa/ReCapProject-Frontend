@@ -1,4 +1,4 @@
-<!-- <div
+<div
   *ngIf="dataLoaded == false"
   class="spinner-border text-primary"
   role="status"
@@ -18,7 +18,7 @@
 <div *ngIf="filterText.length > 2" class="alert alert-primary">
   {{ filterText }} aradınız
 </div>
-
+<!-- 
 <table class="table">
   <thead *ngIf="dataLoaded == true">
     <tr>
@@ -59,18 +59,13 @@
         <div class="row">
         <div *ngFor="let carDto of carDtos | filterPipe: filterText" class="col-sm-4">
     <div
-      
       class="card"
-      
     >
-    
       <img 
         src="https://localhost:44355/{{ carDto.imagePath }}"
         class="card-img-top"
         alt="..."
       />
-    
-    
     
       <div class="card-body">
         <h5 class="card-title">{{ carDto.brandName | uppercase }}</h5>

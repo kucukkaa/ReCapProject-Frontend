@@ -76,11 +76,6 @@ export class CardtoComponent implements OnInit {
     })
   }
 
-  getCarDtosByCarId(carId:number){
-    this.carDtoService.getCarDtosByCarId(carId).subscribe(response=>{
-      this.theCarDtos = response.data[0];
-      this.dataLoaded=true;
-    })
-  }
+  
 
 }
