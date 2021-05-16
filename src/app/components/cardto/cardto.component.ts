@@ -6,6 +6,10 @@ import { CarDto } from 'src/app/models/carDto';
 import { CarImage } from 'src/app/models/carImage';
 import { CardtoService } from 'src/app/services/cardto.service';
 import { CarimageService } from 'src/app/services/carimage.service';
+import { BrandService } from 'src/app/services/brand.service';
+import { Brand } from 'src/app/models/brand';
+import { ColorService } from 'src/app/services/color.service';
+import { Color } from 'src/app/models/color';
 
 @Component({
   selector: 'app-cardto',
@@ -15,14 +19,24 @@ import { CarimageService } from 'src/app/services/carimage.service';
 export class CardtoComponent implements OnInit {
 
   carDtos:CarDto[] = [];
+  filtredCarDtos:CarDto[] = [];
   theCarDtos:CarDto;
   dataLoaded = false;
   filterText="";
   currentCarDto:CarDto;
   carImages:CarImage[]=[];
   firstCarImage:CarImage;
+  brands:Brand[] = [];
+  colors:Color[]=[];
+  brandName:String;
+  colorId:number;
 
-  constructor(private carDtoService:CardtoService ,private activatedRoute:ActivatedRoute, private toastrService:ToastrService, private carImageService:CarimageService) { }
+  constructor(private carDtoService:CardtoService,
+    private activatedRoute:ActivatedRoute, 
+    private toastrService:ToastrService, 
+    private carImageService:CarimageService, 
+    private brandService:BrandService, 
+    private colorService:ColorService) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params=>{
@@ -33,9 +47,11 @@ export class CardtoComponent implements OnInit {
         this.getCarDtosByColorId(params["colorId"])
         
       }else {
-        this.getCarDtos();
-        
+        this.getCarDtos();   
       }
+      this.getBrands();
+      this.getColors();  
+      
     })
   }
       
@@ -53,8 +69,8 @@ export class CardtoComponent implements OnInit {
     })
   }
 
-  getCarDtosByBrandId(brandId:number){
-    this.carDtoService.getCarDtosByBrandId(brandId).subscribe(response=>{
+  getCarDtosByBrandId (brandId:number){
+      this.carDtoService.getCarDtosByBrandId(brandId).subscribe(response=>{
       this.carDtos = response.data
       this.dataLoaded = true
     })
@@ -76,6 +92,27 @@ export class CardtoComponent implements OnInit {
     })
   }
 
-  
+  getBrands(){
+    this.brandService.getBrands().subscribe(response=>{
+      this.brands = response.data
+      this.dataLoaded=true;
+    })
+  }
+
+  getColors(){
+    this.colorService.getColors().subscribe(response=>{
+      this.colors = response.data
+      this.dataLoaded = true
+    })
+  } 
+
+  filterByColorAndBrand(colorId:number, brandName:String){
+      this.carDtoService.getCarDtosByColorIdAndBrandName(colorId, brandName).subscribe(response=>{
+      this.carDtos = response.data
+      this.dataLoaded = true
+    })
+  }
+    
 
 }
+

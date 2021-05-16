@@ -22,7 +22,6 @@ import { FilterPipePipe } from './pipes/filter-pipe.pipe';
 import { ToastrModule } from "ngx-toastr";
 import { CarcardComponent } from './components/carcard/carcard.component';
 import { TrustUrlPipe } from './pipes/trust-url.pipe';
-import { FilterBycolorPipe } from './pipes/filter-bycolor.pipe';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
@@ -46,7 +45,6 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     FilterPipePipe,
     CarcardComponent,
     TrustUrlPipe,
-    FilterBycolorPipe,
     CarAddComponent,
     LoginComponent
   ],

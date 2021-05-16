@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CarDto } from 'src/app/models/carDto';
@@ -21,11 +21,11 @@ export class CarcardComponent implements OnInit {
   currentCar: CarDto;
   carImages: CarImage[] = [];
   carImagePathTemp: string[] = [];
-  abc: string[];
   index: number = 0;
   lastRental: Rental;
   rent_date: Date;
   return_date: Date;
+  classType:String;
 
   constructor(
     private carCardService: CarcardService,
@@ -70,31 +70,35 @@ export class CarcardComponent implements OnInit {
     });
   }
 
-  // getRentButtonClassName() {
-  //   if (this.rent_date <=  this.lastRental.returnDate || this.rent_date > this.return_date || this.lastRental.returnDate == null) {
-  //     return "btn btn-primary disabled"
-  //   } else {
-  //     return "btn btn-primary"
-  //   }
-  // }
-
   getRentButtonClassName() {
     if (this.lastRental == null) {
       if (this.rent_date > this.return_date) {
-
-        return "btn btn-primary disabled"
+        this.classType="btn btn-warning"
+        return this.classType
       } else {
-        return "btn btn-primary"
+        this.classType="btn btn-primary"
+        return this.classType
       }
     } else {
       if (this.rent_date <= this.lastRental.returnDate || this.rent_date > this.return_date || this.lastRental.returnDate == null) {
-        return "btn btn-primary disabled"
+        this.classType="btn btn-warning"
+        return this.classType
       } else {
-        return "btn btn-primary"
+        this.classType="btn btn-primary"
+        return this.classType
       }
     }
+  }
+  
+  checkTheRentButton(){
+    if (this.classType != "btn btn-primary"){
+      this.checkTheDates()
+    }else{
+        
+    }
+  }
 
-
-
+  checkTheDates(){
+    this.toastrService.warning("Tarihleri kontrol ediniz!")
   }
 }

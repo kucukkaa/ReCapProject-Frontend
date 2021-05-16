@@ -6,4 +6,5 @@ export interface CarDto{
     imagePath:string;    
     rentDate:Date;
     returnDate:Date;
+    modelYear:number;
 }
