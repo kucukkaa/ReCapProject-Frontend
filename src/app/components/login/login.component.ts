@@ -16,6 +16,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
@@ -48,5 +49,11 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+  }  
+
+  isAuthenticated(){
+    return this.authService.isAuthenticated()
   }
+
+  
 }

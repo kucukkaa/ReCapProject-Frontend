@@ -77,6 +77,7 @@ export class CarcardComponent implements OnInit {
         return this.classType
       } else {
         this.classType="btn btn-primary"
+        console.log(localStorage.getItem("token"))
         return this.classType
       }
     } else {
@@ -93,8 +94,6 @@ export class CarcardComponent implements OnInit {
   checkTheRentButton(){
     if (this.classType != "btn btn-primary"){
       this.checkTheDates()
-    }else{
-        
     }
   }
 

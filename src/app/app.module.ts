@@ -25,6 +25,7 @@ import { TrustUrlPipe } from './pipes/trust-url.pipe';
 import { CarAddComponent } from './components/car-add/car-add.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { LogoutComponent } from './components/logout/logout.component';
 
 
 
@@ -46,7 +47,8 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     CarcardComponent,
     TrustUrlPipe,
     CarAddComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
