@@ -6,6 +6,8 @@ import { CarcardComponent } from './components/carcard/carcard.component';
 import { CardtoComponent } from './components/cardto/cardto.component';
 import { CarimageComponent } from './components/carimage/carimage.component';
 import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { RegisterComponent } from './components/register/register.component';
 import { LoginGuard } from './guards/login.guard';
 
 const routes: Routes = [
@@ -16,7 +18,9 @@ const routes: Routes = [
   {path:"cars/car/:carId", component:CarcardComponent},
   {path:"cars/carimages/:carId", component:CarimageComponent},
   {path:"cars/add", component:CarAddComponent, canActivate:[LoginGuard]},
-  {path:"login", component:LoginComponent}
+  {path:"login", component:LoginComponent},
+  {path:"logout", component:LogoutComponent},
+  {path:"register", component:RegisterComponent}
 ];
 
 @NgModule({

@@ -27,8 +27,8 @@
             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
           </li>
         </ul>
-          <button *ngIf="isAuth" class="btn btn-success" (click)="logout()" routerLink="/login" type="submit">Çıkış Yap</button>
-          <button *ngIf="!isAuth" class="btn btn-primary" routerLink="/login" type="submit">Giriş Yap</button>
+          <button *ngIf="isAuth" class="btn btn-success" (click)="logout()" routerLink="/logout" type="submit">Çıkış Yap</button>
+          <button *ngIf="!isAuth" class="btn btn-success" routerLink="/login" type="submit">Giriş Yap</button>
       </div>
     </div>
   </nav>

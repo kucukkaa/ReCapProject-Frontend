@@ -17,6 +17,10 @@ export class NaviComponent implements OnInit {
     this.isAuthenticated()
   }
 
+  ngDoCheck(){
+    this.isAuthenticated()
+  }
+
   logout(){
     this.authService.logout()
     this.isAuthenticated()
