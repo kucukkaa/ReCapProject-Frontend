@@ -71,8 +71,8 @@ export class CarcardComponent implements OnInit {
   }
 
   getRentButtonClassName() {
-    if (this.lastRental == null) {
-      if (this.rent_date > this.return_date) {
+    if (this.lastRental) {
+      if (this.rent_date <= this.lastRental.returnDate || this.rent_date > this.return_date || this.lastRental.returnDate == null) {
         this.classType="btn btn-warning"
         return this.classType
       } else {
@@ -80,14 +80,10 @@ export class CarcardComponent implements OnInit {
         console.log(localStorage.getItem("token"))
         return this.classType
       }
-    } else {
-      if (this.rent_date <= this.lastRental.returnDate || this.rent_date > this.return_date || this.lastRental.returnDate == null) {
-        this.classType="btn btn-warning"
+    }else {
+      this.classType="btn btn-primary"
+        console.log(localStorage.getItem("token"))
         return this.classType
-      } else {
-        this.classType="btn btn-primary"
-        return this.classType
-      }
     }
   }
   
